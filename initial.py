@@ -17,7 +17,7 @@ def folder_control(reduced_folder):
 
 
 
-def address_cope_60 (band_info,target_name):
+def address_cope (band_info,target_name):
 
     print("\033[1;31m Initialing file path!\033[0m")
     
