@@ -326,20 +326,24 @@ def star_choose(target_coor,band_info,star_cat_file_path,confirmed_star_path,png
             print('出错！该坐标附近未找到可识别的参考星！')
 
         # 图像位移
-        plt.figure(figsize=(8,6),dpi=400)
+        plt.figure(figsize=(8,6),dpi=100)
         plt.plot(matrix_time,ra_movement)
-        plt.title('Target '+band_info[i]+' band RA movement')
-        plt.xlabel('MJD',fontsize = 10)
-        plt.ylabel('RA MOVEMENT',fontsize = 10)
-        plt.savefig(png_file_path+band_info[i]+' band RA movement.png', bbx_width='tight', dpi=200)
+        plt.title('Target '+band_info[i]+' band RA movement',fontsize=20)
+        plt.xlabel('MJD',fontsize = 15)
+        plt.ylabel('RA MOVEMENT',fontsize = 15)
+        #plt.savefig(png_file_path+band_info[i]+' band RA movement.png', bbx_width='tight',dpi=50)
+        #论文使用这个
+        plt.savefig(png_file_path+band_info[i]+' band RA movement.eps', bbx_width='tight',dpi=100)
         plt.close()
 
-        plt.figure(figsize=(8,6),dpi=400)
+        plt.figure(figsize=(8,6),dpi=100)
         plt.plot(matrix_time,dec_movement)
-        plt.title('Target '+band_info[i]+' band DEC movement')
-        plt.xlabel('MJD',fontsize = 10)
-        plt.ylabel('DEC MOVEMENT',fontsize = 10)
-        plt.savefig(png_file_path+band_info[i]+' band DEC movement.png', bbx_width='tight', dpi=200)
+        plt.title('Target '+band_info[i]+' band DEC movement',fontsize=20)
+        plt.xlabel('MJD',fontsize = 15)
+        plt.ylabel('DEC MOVEMENT',fontsize = 15)
+        #plt.savefig(png_file_path+band_info[i]+' band DEC movement.png', bbx_width='tight', dpi=50)
+        #论文使用这个
+        plt.savefig(png_file_path+band_info[i]+' band DEC movement.eps', bbx_width='tight', dpi=100)
         plt.close()
 
         print(" Completed ! ")
@@ -489,11 +493,12 @@ def refer_chooes(band_info,confirmed_star_candidate_path,target_star_path,sta_im
         #潜在参考星
         positions = np.transpose((candidates[:,0],candidates[:,1]))
         apertures = CircularAperture(positions, r = 15.)
-        plt.figure(figsize = (16,16))
+        plt.figure(figsize = (8,8))
+        #plt.figure(figsize = (16,16))
         plt.imshow(data,cmap = 'Greys_r',origin = 'lower',vmin = np.median(data)-0.5*np.std(data),
                     vmax = np.median(data)+1.8*np.std(data),interpolation = 'nearest')
         apertures.plot(color = 'red',lw = 1.5,alpha = 0.5)
-        plt.title(band_info[j]+' band reference stars candidates',fontsize=25)
+        plt.title(band_info[j]+' band reference stars candidates',fontsize=20)
         for ii in range (len(positions)):
             plt.text(positions[ii][0],positions[ii][1],
                     str((f'{candidates[ii,2]:.5f}',f'{candidates[ii,3]:.5f}')),color='red')
@@ -507,7 +512,8 @@ def refer_chooes(band_info,confirmed_star_candidate_path,target_star_path,sta_im
         plt.text(target_head['XCENTER'],target_head['YCENTER'],str((f'{RA:.5f}',f'{DEC:.5f}')),color='yellow')
 
         #存储图像
-        plt.savefig(png_file_path+band_info[j]+' band reference stars candidates.png', bbx_width='tight', dpi=600)
+        #plt.savefig(png_file_path+band_info[j]+' band reference stars candidates.png', bbx_width='tight', dpi=600)
+        plt.savefig(png_file_path+band_info[j]+' band reference stars candidates.eps', bbx_width='tight', dpi=100)
         plt.close()
 
 
@@ -546,10 +552,11 @@ def refer_chooes(band_info,confirmed_star_candidate_path,target_star_path,sta_im
     #####绘图区域#########
 
         #绘制自动选择后的图
-        plt.figure(figsize = (16,16))
+        #plt.figure(figsize = (16,16))
+        plt.figure(figsize = (8,8))
         plt.imshow(data,cmap = 'Greys_r',origin = 'lower',vmin = np.median(data)-0.5*np.std(data),
                     vmax = np.median(data)+1.8*np.std(data),interpolation = 'nearest')
-        plt.title(band_info[j]+' band reference stars(AutoChoose)',fontsize=25)
+        plt.title(band_info[j]+' band reference stars(AutoChoose)',fontsize=20)
 
         #目标星绘图
         positions = np.transpose((target_head['XCENTER'],target_head['YCENTER']))
@@ -572,7 +579,8 @@ def refer_chooes(band_info,confirmed_star_candidate_path,target_star_path,sta_im
                         f"No: {ii+1}, Index:{ref_index[ii]}",color='red')
         
         #存储图像
-        plt.savefig(png_file_path+band_info[j]+' band reference stars(AutoChoose).png', bbx_width='tight', dpi=600)
+        #plt.savefig(png_file_path+band_info[j]+' band reference stars(AutoChoose).png', bbx_width='tight', dpi=600)
+        plt.savefig(png_file_path+band_info[j]+' band reference stars(AutoChoose).eps', bbx_width='tight', dpi=100)
         plt.close()
 
 

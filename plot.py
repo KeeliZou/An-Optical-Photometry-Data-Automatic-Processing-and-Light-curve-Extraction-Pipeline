@@ -128,7 +128,7 @@ def auto_plot(band_info,target_star_path,ref_star_cat,check_star_cat,confirmed_s
         err_bar_color = (156/255,179/255,212/255)
         
         #绘图模块
-        plt.figure(figsize=(16,8),dpi=400)
+        plt.figure(figsize=(16,8),dpi=100)
         #目标星绘图
         plt.errorbar(mjd,tar_mag_plot,yerr = tar_magerr,fmt = '.',color = tar_color,
                      ecolor = err_bar_color,elinewidth=2.5,capsize=4,label = 'Target Star')
@@ -153,9 +153,10 @@ def auto_plot(band_info,target_star_path,ref_star_cat,check_star_cat,confirmed_s
         #其他杂项
         plt.legend()    
         plt.xlabel('MJD',fontsize = 20)
-        plt.ylabel('Delta m')
-        plt.title(band_info[j]+' band lightcurve for Target',color = title_color,fontsize=14)
-        plt.savefig(png_file_path+band_info[j]+' band lightcurve for Target', bbx_width='tight', dpi=200)
+        plt.ylabel('Delta m',fontsize = 20)
+        plt.title(band_info[j]+' band lightcurve for Target',color = title_color,fontsize=30)
+        #plt.savefig(png_file_path+band_info[j]+' band lightcurve for Target.png', bbx_width='tight', dpi=200)
+        plt.savefig(png_file_path+band_info[j]+' band lightcurve for Target.eps', bbx_width='tight', dpi=100)
         plt.close()
 
         tar_err_mean = np.nanmean(tar_magerr)
